@@ -7,8 +7,8 @@ export default function Signup() {
     const [info, setInfo] = useState({
         email: '',
         name: '',
-        birthday: '',
-        password: ''
+        bday: '',
+        pw: ''
     })
     
     const handleChange = (event) => {
@@ -26,6 +26,7 @@ export default function Signup() {
         e.preventDefault();
         // const res = await login(info);
         console.log('registered');
+        window.location.href = '/login';
         // (res.status === 200) ? window.location.href = "../" : setLoginErr(true);
     }
 

@@ -5,6 +5,13 @@
     padding-top: 3rem;
 }
 
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10rem;
+}
+
 button {
     width: 25%;
     padding: 1rem;
@@ -47,4 +54,11 @@ input:focus {
 .inputWrapper {
     margin-bottom: 2.3rem;
     width: 25%;
+}
+
+.link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 800;
+
 }
