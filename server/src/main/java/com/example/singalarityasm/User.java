@@ -1,16 +1,23 @@
 package com.example.singalarityasm;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Table
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @JsonIgnore
+  @Column(unique=true)
   private Integer id;
 
+  @Column(unique=true)
   private String email;
   private String name;
   private String bday;
