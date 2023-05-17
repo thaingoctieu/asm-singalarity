@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import style from '../styles.module.css'
 
-
 export default function Login() {
     const navigate = useNavigate()
 

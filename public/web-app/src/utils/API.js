@@ -1,5 +1,6 @@
-const host = 'http://localhost:8080/'
 import axios from 'axios'
+
+const host = 'http://localhost:8080'
 
 export const login = async (data) => {
     try {
@@ -18,13 +19,13 @@ export const login = async (data) => {
     }
 }
 
-export const signup = async (data) => {
+export const signup = async (dt) => {
     try {
         // create axios post request
         const res = await axios({
             method: 'post',
             url: `${host}/api/signup`,
-            data: data,
+            data: dt,
             headers: { "Content-Type": "application/json" },
         })
         return res.data
@@ -41,7 +42,6 @@ export const getUser = async (token) => {
         const res = await axios({
             method: 'get',
             url: `${host}/api/userInfo`,
-            data: data,
             headers: { authorization: token },
         })
         return res.data
