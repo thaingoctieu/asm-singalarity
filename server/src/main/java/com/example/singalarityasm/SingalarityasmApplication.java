@@ -1,13 +1,12 @@
-package com.example.demo;
+package com.example.singalarityasm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class SingalarityasmApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SingalarityasmApplication.class, args);
 	}
-
 }
