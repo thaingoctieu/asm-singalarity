@@ -1,4 +1,5 @@
 package com.example.singalarityasm;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -8,5 +9,5 @@ import com.example.singalarityasm.User;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserRepository extends CrudRepository<User, Integer> {
-
+    List<User> findByEmail(String email);
 }
