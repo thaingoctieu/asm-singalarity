@@ -26,6 +26,11 @@ Go to the server directory
   cd server
 ```
 
+Execute .bash_profile
+```bash
+  source .bash_profile
+```
+
 Start the server
 
 ```bash
