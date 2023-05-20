@@ -1,14 +1,27 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
 import style from '../styles.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { login } from '../../utils/API'
+import { AppContext } from '../../store/context'
 
 export default function Login() {
     const navigate = useNavigate()
+    // const context = useContext(AppContext)
+
+    const toastOptions = {
+        position: "bottom-right",
+        autoClose: 8000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+    }
 
     const [info, setInfo] = useState({
         email: '',
-        password: ''
+        pw: '',
     })
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -21,10 +34,21 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const res = await login(info);
-        console.log('registered');
-        navigate('/info')
-        // (res.status === 200) ? window.location.href = "../" : setLoginErr(true);
+        let msg = ''
+        try {
+            const res = await login(info);
+            msg = res.msg
+            // login successfully
+        if (res.email === info.email) {
+            // await context.login(info.email)
+            localStorage.setItem('email', info.email)
+            localStorage.setItem('login', 'true')
+            window.location.href = "/info";
+        }
+        } catch (err) {
+            toast.error(msg, toastOptions)
+        }
+        
     }
 
     return (
@@ -44,7 +68,7 @@ export default function Login() {
                     Password
                 </label>
                 <input
-                    type="password" required
+                    type="password" name="pw" required
                     minLength="8"
                     onChange={handleChange}
                 />

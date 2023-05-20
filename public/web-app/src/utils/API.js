@@ -41,7 +41,7 @@ export const getUser = async (token) => {
         // create axios get request
         const res = await axios({
             method: 'get',
-            url: `${host}/api/userInfo`,
+            url: `${host}/api/info`,
             headers: { authorization: token },
         })
         return res.data

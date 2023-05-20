@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import style from '../styles.module.css'
-import clsx from 'clsx'
+import { getUser } from '../../utils/API'
 
 export default function Info() {
     const navigate = useNavigate()
@@ -15,11 +15,22 @@ export default function Info() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const res = await login(info);
         console.log('logged out');
+        localStorage.removeItem('email')
+        localStorage.removeItem('login')
         navigate('/login')
-        // (res.status === 200) ? window.location.href = "../" : setLoginErr(true);
     }
+
+    useEffect(() => {
+        // let email = JSON.parse(localStorage.getItem('email'))
+        (
+            async () => {
+                const res = await getUser(localStorage.getItem('email'));
+                setInfo(res)
+                console.log(res)
+            }
+        )();
+    }, [])
 
     return (
         <form className={style.container} >
@@ -52,7 +63,7 @@ export default function Info() {
                     Birthday
                 </label>
                 <input
-                    type="date" required
+                    type="text" required
                     value={info.bday}
                     disabled
                     style={{'color': '#e6e6e6'}}

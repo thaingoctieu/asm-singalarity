@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 import style from '../styles.module.css'
 import { signup } from '../../utils/API';
 
 export default function Signup() {
-    const [loginErr, setLoginErr] = useState(false);
     const [info, setInfo] = useState({
         email: '',
         name: '',
@@ -18,12 +18,10 @@ export default function Signup() {
             ...prev,
             [name]: value,
         }));
-        setLoginErr(false);
         // console.log(info)
     }
 
     const handleSubmit = async (e) => {
-        setLoginErr(false);
         e.preventDefault();
         // const res = await login(info);
         console.log('registered')
@@ -33,7 +31,6 @@ export default function Signup() {
         console.log(res)
 
         window.location.href = '/login';
-        // (res.status === 200) ? window.location.href = "../" : setLoginErr(true);
     }
 
     return (
@@ -82,6 +79,11 @@ export default function Signup() {
             <button>
                 Sign Up
             </button>
+
+            <div style={{ 'marginTop': '2rem', 'marginBottom': '3rem' }}>
+                <span>Already have account? </span>
+                <Link className={style.link} to='/login'>Log In here</Link>
+            </div>
         </form>
     )
 }
